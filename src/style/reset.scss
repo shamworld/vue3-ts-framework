@@ -1,0 +1,407 @@
+@import "./vars.scss";
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  /* font: inherit; */
+  vertical-align: baseline;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+html,
+#root {
+  height: 100%;
+}
+body {
+  height: auto;
+}
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+* {
+  -webkit-touch-callout: none; /*系统默认菜单被禁用*/
+
+  -webkit-user-select: none; /*webkit浏览器*/
+
+  -khtml-user-select: none; /*早期浏览器*/
+
+  -moz-user-select: none; /*火狐*/
+
+  -ms-user-select: none; /*IE10*/
+
+  user-select: none;
+}
+textarea {
+  //如果存在textarea也输入不进文本的情况下，加上这个
+
+  -webkit-user-select: auto; /*webkit浏览器*/
+}
+button {
+  border: none;
+}
+input {
+  -web-kit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  border: none;
+  -webkit-user-select: auto; /*webkit浏览器*/
+  vertical-align: middle;
+  flex: 1;
+  min-width: 100px;
+}
+/*修改提示文字的颜色*/
+
+input::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: $white;
+}
+
+input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: $white;
+}
+
+input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: $white;
+}
+
+input:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: $white;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  outline: 0;
+}
+
+body.iphone a[href]:active,
+body.iphone button:active {
+  background-image: none;
+}
+// colors
+$colors: (
+  "primary": $primary,
+  "white": $white,
+  "grey": $grey,
+  "black": $black,
+  "black1": $black1,
+  "black3": $black3,
+  "black6": $black6,
+  "black9": $black9,
+  "golden": $yellow,
+  "green": $green,
+  "red": $red,
+  "yellow": $yellow,
+  "blue": $blue,
+  "blue1": $blue1,
+  "blue2": $blue2,
+  "blue3": $blue3,
+  "deepBlue": $deepBlue,
+  "purple": $purple,
+  "place_horder": $place_horder,
+  "e2": $e2,
+);
+
+// 文本、背景颜色设置
+@each $colorKey, $color in $colors {
+  .t-#{$colorKey} {
+    color: $color !important;
+  }
+  .bg-#{$colorKey} {
+    background-color: rgba($color: $color, $alpha: 1);
+  }
+}
+
+// 文本位置设置
+@each $var in (left, center, right) {
+  .t-#{$var} {
+    text-align: $var;
+  }
+}
+
+// 字体大小设置
+$font-sizes: (
+  "min": 24px,
+  "sm": 28px,
+  "md": 32px,
+  "lg": 36px,
+  "xl": 40px,
+  "xxl": 48px,
+  "xxxl": 56px,
+  "max": 60px,
+);
+
+@each $sizeKey, $size in $font-sizes {
+  .fs-#{$sizeKey} {
+    font-size: $size;
+    transition: all 0.1s;
+  }
+}
+
+// flex 布局
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+$flex-jc: (
+  starts: flex-start,
+  end: flex-end,
+  center: center,
+  between: space-between,
+  around: space-around,
+);
+
+@each $key, $value in $flex-jc {
+  .jc-#{$key} {
+    justify-content: $value;
+  }
+}
+
+$flex-ai: (
+  starts: flex-start,
+  end: flex-end,
+  center: center,
+  stretch: stretch,
+);
+
+@each $key, $value in $flex-ai {
+  .ai-#{$key} {
+    align-items: $value;
+  }
+}
+
+// margin padding 设置
+// 0-5 level
+// .mt-1 { margin-top level 1 }   .pb-2 { padding bottom level 2 }
+
+$spacing-types: (
+  m: margin,
+  p: padding,
+);
+$spacing-directions: (
+  t: top,
+  r: right,
+  b: bottom,
+  l: left,
+);
+$spacing-base: 2px;
+$spacing-sizes: (
+  0: 0,
+  10: 10,
+  15: 15,
+  20: 20,
+  25: 25,
+  30: 30,
+  40: 40,
+  50: 50,
+  60: 60,
+);
+
+@each $typeKey, $type in $spacing-types {
+  // m-1
+  @each $sizeKey, $size in $spacing-sizes {
+    .#{$typeKey}-#{$sizeKey} {
+      #{$type}: ($spacing-base * $size);
+    }
+  }
+
+  // mx-1 x轴
+  @each $sizeKey, $size in $spacing-sizes {
+    .#{$typeKey}x-#{$sizeKey} {
+      #{$type}-left: ($spacing-base * $size);
+      #{$type}-right: ($spacing-base * $size);
+    }
+  }
+
+  // my-1 y轴
+  @each $sizeKey, $size in $spacing-sizes {
+    .#{$typeKey}y-#{$sizeKey} {
+      #{$type}-top: ($spacing-base * $size);
+      #{$type}-bottom: ($spacing-base * $size);
+    }
+  }
+
+  // m-t-1
+  @each $directionKey, $direction in $spacing-directions {
+    @each $sizeKey, $size in $spacing-sizes {
+      .#{$typeKey}-#{$directionKey}-#{$sizeKey} {
+        #{$type}-#{$direction}: ($spacing-base * $size);
+      }
+    }
+  }
+}
+
+// float 布局
+$floats: (
+  l: left,
+  r: right,
+);
+
+@each $key, $value in $floats {
+  .f-#{$key} {
+    float: $value;
+  }
+}
+
+$lineHeigths: (
+  1: 1.1,
+  2: 1.2,
+  3: 1.3,
+  4: 1.4,
+  5: 1.5,
+  "max": 2,
+);
+
+@each $key, $value in $lineHeigths {
+  .lh-#{$key} {
+    line-height: $value;
+  }
+}
+
+// 父级元素加 一般情况下，如果父层内部有浮动(float)可能导致父层的高度为0，加上clearfix后就行了
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.clearfix {
+  zoom: 1;
+}
