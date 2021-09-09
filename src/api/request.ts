@@ -5,7 +5,7 @@
  * @Github: @163.com
  * @Date: 2021-03-26 11:03:45
  * @LastEditors: Roy
- * @LastEditTime: 2021-05-14 15:03:15
+ * @LastEditTime: 2021-09-09 10:43:06
  * @Deprecated: 否
  * @FilePath: /vue-ts-framework1/src/api/request.ts
  */
@@ -15,12 +15,9 @@ import { Toast } from 'vant'
 
 axios.defaults.headers = {
     "Content-Type": "application/json;charset=utf8",
-    // "Authorization": window.localStorage.getItem('token') ? `Bearer ${window.localStorage.getItem('token')}` : ''
 };
 
-axios.defaults.baseURL = process.env.VUE_APP_BASE_API
-    ? process.env.VUE_APP_BASE_API
-    : "https://api.winner.tools";
+axios.defaults.baseURL = process.env.VUE_APP_BASE_API;
 
 //拦截器
 axios.interceptors.request.use(
@@ -83,10 +80,10 @@ export function getData(url: string, json: object) {
 
 export function postData(url: string, json?: object) {
     return axios
-      .post(url, json)
-      .then(res => res.data)
-      .catch(error => error.response);
-  }
+        .post(url, json)
+        .then(res => res.data)
+        .catch(error => error.response);
+}
 
 
 

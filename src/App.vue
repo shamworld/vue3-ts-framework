@@ -5,51 +5,55 @@
  * @Github: @163.com
  * @Date: 2021-03-26 10:46:56
  * @LastEditors: Roy
- * @LastEditTime: 2021-05-14 16:40:31
+ * @LastEditTime: 2021-09-09 10:19:46
  * @Deprecated: 否
  * @FilePath: /vue-ts-framework1/src/App.vue
 -->
+
 <template>
   <div id="app">
-    <router-view></router-view>
+    <router-view v-if="isRouterAlive"></router-view>
     <TabBar v-show="route.meta.isShowBottomTabbar" />
   </div>
   <!-- <router-view/> -->
 </template>
 
-<script>
-import TabBar from "./components/tabbar/Tabbar";
-import { useRoute} from 'vue-router'
+<script lang="ts">
+import TabBar from "./components/tabbar/Tabbar.vue";
+import { useRoute } from "vue-router";
+import { onMounted, getCurrentInstance, ref, nextTick, provide } from "vue";
+import { vantLocales } from "./lang";
 export default {
   components: {
     TabBar,
   },
-  setup(){
+  setup() {
     const route = useRoute();
-
+    const isRouterAlive = ref<boolean>(true);
+    let { proxy }: any = getCurrentInstance();
+    const reload = () => {
+      isRouterAlive.value = false;
+      nextTick(() => {
+        isRouterAlive.value = true;
+      });
+    };
+    provide("reload", reload);
+    onMounted(() => {
+      proxy.$i18n.locale = localStorage.lang || "cn";
+      localStorage.setItem("lang", proxy.$i18n.locale);
+      vantLocales(proxy.$i18n.locale);
+    });
     return {
-      route
-    }
-  }
-}
+      route,
+      isRouterAlive,
+    };
+  },
+};
 </script>
 <style lang="scss">
 #app {
   height: 100vh;
   background: #fff;
   width: 100%;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 </style>

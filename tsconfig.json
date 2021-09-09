@@ -8,7 +8,9 @@
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "skipLibCheck": true,
+    "resolveJsonModule": true,
     "esModuleInterop": true,
+    "noImplicitAny": false,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
@@ -32,8 +34,11 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx"
-, "src/router/modules/page3.router.js", "src/router/modules/page4.router.js", "src/router/modules/tabbar.router.js"  ],
+    "tests/**/*.tsx",
+    "src/router/modules/page3.router.js",
+    "src/router/modules/page4.router.js",
+    "src/router/modules/tabbar.router.js"
+  ],
   "exclude": [
     "node_modules"
   ]
